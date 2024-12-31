@@ -13,7 +13,7 @@ const MainLayout: React.FC = () => {
         </aside>
     </div>
     <div className="w-full h-full">
-        <header className="bg-green-500 sticky top-0 z-20">
+        <header className="bg-white sticky top-0 z-20">
             <Navbar/>
         </header>
 
