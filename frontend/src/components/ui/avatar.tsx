@@ -65,3 +65,4 @@ const AvatarWithName = ({ name, imageUrl, className }: { name: string; imageUrl?
 }
 
 export { Avatar, AvatarImage, AvatarFallback, AvatarWithName }
+
