@@ -7,6 +7,7 @@ import {AppSidebar} from "@/components/app-sidebar";
 const MainLayout: React.FC = () => {
   return (
     <>
+
       <div className="flex h-screen bg-slate-200">
         {/* Sidebar Section */}
         <div className="z-10 h-full ">
@@ -25,6 +26,7 @@ const MainLayout: React.FC = () => {
             </SidebarProvider>
           </aside>
         </div>
+
 
       </div>
     </>
