@@ -1,8 +1,8 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import { Outlet } from "react-router-dom";
-import { SidebarProvider, } from "@/components/ui/sidebar";
-import {AppSidebar} from "@/components/app-sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
 const MainLayout: React.FC = () => {
   return (
@@ -11,13 +11,13 @@ const MainLayout: React.FC = () => {
       <div className="flex h-screen bg-slate-200">
         {/* Sidebar Section */}
         <div className="z-10 h-full ">
-          <aside className="h-screen">
+          <aside className="h-screen flex flex-col justify-center items-center">
             <SidebarProvider>
               <AppSidebar />
-              <main className="px-7 flex flex-col justify-start items-center gap-2" >
-                <div className="w-full sticky top-0">
+              <main className="px-7 flex flex-col justify-start items-center gap-2">
+                <div className="w-full sticky top-0 flex justify-center items-center gap-3">
+                <SidebarTrigger/>
                   <Navbar />
-                  
                 </div>
                 <div>
                   <Outlet />
@@ -26,8 +26,6 @@ const MainLayout: React.FC = () => {
             </SidebarProvider>
           </aside>
         </div>
-
-
       </div>
     </>
   );

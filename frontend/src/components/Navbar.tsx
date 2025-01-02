@@ -7,6 +7,7 @@ import { AvatarWithName } from "@/components/ui/avatar";
 function Navbar() {
   return (
     <>
+
       <nav className="bg-inherit p-2 shadow-md">
         <div className="flex items-center container mx-5">
           <div className="flex gap-3 w-full">
