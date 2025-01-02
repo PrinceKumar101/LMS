@@ -1,28 +1,34 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
-import Sidebar from "@/components/Sidebar";
 import { Outlet } from "react-router-dom";
+import { SidebarProvider, } from "@/components/ui/sidebar";
+import {AppSidebar} from "@/components/app-sidebar";
 
 const MainLayout: React.FC = () => {
   return (
     <>
-    <div className="flex">
-    <div className="h-full sticky top-0 z-10 w-1/6 bg-rose-500 flex justify-center">
-        <aside className="h-screen   ">
-            <Sidebar/>
-        </aside>
-    </div>
-    <div className="w-full h-full">
-        <header className="bg-white sticky top-0 z-20">
-            <Navbar/>
-        </header>
 
-        <main className="bg-yellow-500 h-screen">
-            <Outlet/>
-        </main>
+      <div className="flex h-screen bg-slate-200">
+        {/* Sidebar Section */}
+        <div className="z-10 h-full ">
+          <aside className="h-screen">
+            <SidebarProvider>
+              <AppSidebar />
+              <main className="px-7 flex flex-col justify-start items-center gap-2" >
+                <div className="w-full sticky top-0">
+                  <Navbar />
+                  
+                </div>
+                <div>
+                  <Outlet />
+                </div>
+              </main>
+            </SidebarProvider>
+          </aside>
+        </div>
 
-    </div>
-    </div>
+
+      </div>
     </>
   );
 };

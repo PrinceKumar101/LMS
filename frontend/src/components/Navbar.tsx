@@ -1,3 +1,4 @@
+
 import React from "react";
 import { CiBellOn } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
@@ -32,6 +33,7 @@ function Navbar() {
           </div>
         </div>
       </nav>
+
     </>
   );
 }
