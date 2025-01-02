@@ -2,7 +2,6 @@
 import { CiBellOn } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
 import { AvatarWithName } from "@/components/ui/avatar";
-import { SidebarTrigger } from "./ui/sidebar";
 
 function Navbar() {
   return (
@@ -11,7 +10,7 @@ function Navbar() {
         <nav className="bg-inherit p-2 shadow-md w-full">
           <div className="flex items-center container mx-5">
             <span>
-              <SidebarTrigger />
+              
             </span>
             <div className="flex gap-3 w-full">
               <div className="relative">
