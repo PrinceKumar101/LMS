@@ -120,7 +120,7 @@ export function LoginForm({
       </Card>
       <div className="text-balance text-center text-xs text-zinc-500 [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-zinc-900 dark:text-zinc-400 dark:hover:[&_a]:text-zinc-50">
         By clicking continue, you agree to our{" "}
-        <Link to="#">Terms of Service</Link>
+        <Link to="#">Terms of Service </Link>
         {""}
         and <Link to="#">Privacy Policy</Link>.
       </div>
