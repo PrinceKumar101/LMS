@@ -5,7 +5,9 @@ import { AvatarWithName } from "@/components/ui/avatar";
 
 function Navbar() {
   return (
-    <nav className="bg-inherit p-2 shadow-md w-full">
+
+    <nav className="bg-white rounded-lg p-2 shadow-md w-full">
+
       <div className="flex items-center justify-between w-full px-7">
         <div className="flex gap-3 w-full">
           {/* Search Bar */}
@@ -13,7 +15,9 @@ function Navbar() {
             <input
               type="text"
               placeholder="What are you looking for?"
-              className="p-1 pl-8 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:shadow-lg w-full max-w-xs bg-slate-100 rounded-sm"
+
+              className="p-1 pl-8 border border-gray-300 focus:outline-none ring-2 ring-orange-500 focus:shadow-lg w-full max-w-xs bg-white rounded-sm"
+
             />
             <IoIosSearch
               size={20}
