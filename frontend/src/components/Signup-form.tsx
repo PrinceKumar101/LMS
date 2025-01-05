@@ -4,45 +4,72 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
-import Fogot_password from "@/pages/authincate_page/forgot_password";
-
+import * as React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type props_type = {
   website_name: string;
-  signup_link: string;
+  login_link: string;
 };
 
 interface IFormInput {
+  name: string;
   email: string;
-  password: string; 
+  password: string;
+  confirm_password: string;
 }
 
-export function LoginForm({
+
+
+
+
+export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"div"> & props_type) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormInput>();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<IFormInput>();
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log("Form Submitted", data);
     // Add API integration here
   };
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="overflow-hidden p-5">
+      <Card className="overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2">
+          <div className="relative hidden md:flex justify-center items-center h-full">
+            <img
+              src="/images/signup_image.png"
+              alt="Signup Illustration"
+              className="h-5/6 p-5 rounded-lg dark:brightness-[0.2] dark:grayscale"
+            />
+          </div>
           <form onSubmit={handleSubmit(onSubmit)} className="p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-2xl font-bold">Welcome back</h1>
-                <p className="text-balance text-muted-foreground">
-                  Login to your {props.website_name} account
+                <h1 className="text-2xl font-bold">Create an account</h1>
+                <p className="text-muted-foreground">
+                  Sign up for a {props.website_name} account
                 </p>
               </div>
+
+              <div className="grid gap-2">
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  {...register("name", {
+                    required: "Name is required",
+                    maxLength: {
+                      value: 20,
+                      message: "Name cannot exceed 20 characters",
+                    },
+                  })}
+                  id="name"
+                  type="text"
+                  placeholder="John Doe"
+                />
+                {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+              </div>
+
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -58,40 +85,62 @@ export function LoginForm({
                     },
                     validate: {
                       isDomainSecure: (email) =>
-                        [".com", ".org", ".edu"].some((domain) =>
-                          email.endsWith(domain)
-                        ) || "Email domain must be .com, .org, or .edu",
+                        [".com", ".org", ".edu"].some((domain) => email.endsWith(domain)) ||
+                        "Email domain must be .com, .org, or .edu",
                     },
                   })}
                   id="email"
                   type="email"
                   placeholder="m@example.com"
-                  required
                 />
+                {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
               </div>
+
               <div className="grid gap-2">
-                <div className="flex items-center justify-around">
-                  <Label htmlFor="password">Password</Label>
-                  <div><Fogot_password/></div>
-                </div>
+                <Label htmlFor="password">Password</Label>
                 <Input
                   {...register("password", {
                     required: "Password is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters long",
+                    },
+                    pattern: {
+                      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                      message: "Password must contain uppercase, lowercase, number, and special character",
+                    },
                   })}
                   id="password"
                   type="password"
-                  required
                 />
+                {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
               </div>
+
+              <div className="grid gap-2">
+                <Label htmlFor="confirm_password">Confirm Password</Label>
+                <Input
+                  {...register("confirm_password", {
+                    required: "Please confirm your password",
+                    validate: (value) => value === watch("password") || "Passwords do not match",
+                  })}
+                  id="confirm_password"
+                  type="password"
+                />
+                {errors.confirm_password && (
+                  <p className="text-red-500 text-sm">{errors.confirm_password.message}</p>
+                )}
+              </div>
+
               <Button type="submit" className="w-full">
-                Login
+                Sign Up
               </Button>
-              <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
+              <div className="relative text-center text-sm">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
                   Or continue with
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-4">
+                {/* Social login buttons */}
                 <Button
                   variant="outline"
                   className="w-full"
@@ -132,33 +181,16 @@ export function LoginForm({
                   <span className="sr-only">Login with Meta</span>
                 </Button>
               </div>
-              <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
-                <Link
-                  to={props.signup_link}
-                  className="underline underline-offset-4"
-                >
-                  Sign up
+              <div className="text-sm text-muted-foreground text-center">
+                Already have an account?{" "}
+                <Link to={props.login_link} className="font-medium text-primary underline">
+                  Log in
                 </Link>
               </div>
             </div>
           </form>
-          <div className="relative hidden md:flex justify-center items-center h-full">
-            <div className="relative hidden md:flex justify-center items-center h-full ">
-              <img
-                src="/images/login_image.png"
-                alt="Image"
-                className="h-5/6 w-5/6 rounded-lg object-cover object-center dark:brightness-[0.2] dark:grayscale"
-              />
-            </div>
-          </div>
         </CardContent>
       </Card>
-      <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
-        By clicking continue, you agree to our{" "}
-        <Link to="#">Terms of Service</Link> and{" "}
-        <Link to="#">Privacy Policy</Link>.
-      </div>
     </div>
   );
 }

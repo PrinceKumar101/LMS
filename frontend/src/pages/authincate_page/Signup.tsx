@@ -1,8 +1,15 @@
+import { SignupForm } from '@/components/Signup-form'
 import React from 'react'
 
-const Signup = () => {
+const Signup:React.FC = () => {
   return (
-    <div>Signup</div>
+    <>
+    <div>
+      <div>
+        <SignupForm website_name='LMS' login_link='/login'/>
+      </div>
+    </div>
+    </>
   )
 }
 

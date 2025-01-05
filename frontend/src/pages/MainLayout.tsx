@@ -8,14 +8,14 @@ const MainLayout: React.FC = () => {
   return (
     <>
 
-      <div className="flex h-screen bg-slate-200">
+      <div className="flex h-screen bg-slate-200 w-full">
         {/* Sidebar Section */}
-        <div className="z-10 h-full ">
-          <aside className="h-screen flex flex-col justify-center items-center">
+        <div className="z-10 h-full w-full">
+          <div className="h-screen flex flex-col justify-center items-center w-full">
             <SidebarProvider>
               <AppSidebar />
-              <main className="px-7 flex flex-col justify-start items-center gap-2">
-                <div className="w-full sticky top-0 flex justify-center items-center gap-3">
+              <main className="px-7 flex flex-col justify-start items-center gap-2 w-full">
+                <div className="w-full sticky top-0 flex  items-center gap-3">
                 <SidebarTrigger/>
                   <Navbar />
                 </div>
@@ -24,7 +24,7 @@ const MainLayout: React.FC = () => {
                 </div>
               </main>
             </SidebarProvider>
-          </aside>
+          </div>
         </div>
       </div>
     </>
