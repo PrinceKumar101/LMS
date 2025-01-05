@@ -14,8 +14,10 @@ const MainLayout: React.FC = () => {
           <div className="h-screen flex flex-col justify-center items-center w-full">
             <SidebarProvider>
               <AppSidebar />
+
               <main className="px-7 flex flex-col justify-start gap-2 w-full">
                 <div className="w-full sticky top-1 flex  items-center gap-3">
+
                 <SidebarTrigger/>
                   <Navbar />
                 </div>
