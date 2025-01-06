@@ -85,7 +85,7 @@ const NotesDrawer: React.FC<NotesDrawerProps> = ({ setNotes }) => {
 
         {/* Footer */}
         <DrawerFooter>
-          <Button onClick={addNote}>Submit</Button>
+          <DrawerClose asChild><Button onClick={addNote}>Submit</Button></DrawerClose>
           <DrawerClose>
             <Button variant="outline">Cancel</Button>
           </DrawerClose>
